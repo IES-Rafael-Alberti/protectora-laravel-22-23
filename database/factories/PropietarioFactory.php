@@ -4,6 +4,9 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\File;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Propietario>
@@ -17,11 +20,19 @@ class PropietarioFactory extends Factory
      */
     public function definition()
     {
-        #$imagen = Storage::put("propietarios", file_get_contents(fake()->imageUrl(360, 360)));
+        $random_dog = Http::get("https://dog.ceo/api/breeds/image/random");
+        
+        if($random_dog->json("status") == "success") {
+            $filename = Str::random(40);
+            Storage::disk('public')->put("propietarios/" . $filename, Http::get($random_dog->json("message")));
+            $imagen = "/storage/propietarios/" . $filename;
+        } else {
+            $imagen = fake()->imageUrl(360, 360);
+        }
         return [
             'nombre' => fake("es_ES")->firstName(),
             'apellidos' => fake("es_ES")->lastName(),
-            'rutafoto' => fake()->imageUrl(360, 360)
+            'rutafoto' => $imagen
         ];
     }
 }
