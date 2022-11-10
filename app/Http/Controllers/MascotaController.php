@@ -15,6 +15,7 @@ class MascotaController extends Controller
     public function index()
     {
         //
+        return view("mascotas", [ "listado" => Mascota::All() ]);
     }
 
     /**

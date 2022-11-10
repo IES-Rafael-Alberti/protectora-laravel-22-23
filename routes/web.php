@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PropietarioController;
+use App\Http\Controllers\MascotaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/propietarios', [PropietarioController::class, 'listado']);
+Route::get('/mascotas', [MascotaController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

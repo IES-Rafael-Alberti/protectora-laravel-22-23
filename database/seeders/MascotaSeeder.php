@@ -19,6 +19,6 @@ class MascotaSeeder extends Seeder
         //
         $mascota = Mascota::factory()->create();
         Foto_Mascota::factory(3)->for($mascota)->create();
-        //Mascota::factory()->has(Foto_Mascota::factory()->count(5), 'fotos');
+        Mascota::factory()->has(Foto_Mascota::factory(5), 'fotos')->create();
     }
 }
