@@ -16,9 +16,12 @@ class MascotaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // crea una mascota sin fotos
         $mascota = Mascota::factory()->create();
+        // crea 3 fotos para la mascota
         Foto_Mascota::factory(3)->for($mascota)->create();
+
+        // crea otra mascota con 5 fotos
         Mascota::factory()->has(Foto_Mascota::factory(5), 'fotos')->create();
     }
 }

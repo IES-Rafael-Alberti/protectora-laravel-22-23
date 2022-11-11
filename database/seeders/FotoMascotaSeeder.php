@@ -14,6 +14,6 @@ class FotoMascotaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // 
     }
 }

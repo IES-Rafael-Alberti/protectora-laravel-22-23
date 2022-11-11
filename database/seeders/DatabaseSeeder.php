@@ -14,9 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // llama a los seeders de propietario y mascota
         $this->call(PropietarioSeeder::class);
         $this->call(MascotaSeeder::class);
 
+        // ejemplo incorporado por breeze
         // \App\Models\User::factory(10)->create();
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

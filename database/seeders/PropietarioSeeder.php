@@ -14,7 +14,7 @@ class PropietarioSeeder extends Seeder
      */
     public function run()
     {
-        //
+        // crea 10 propietarios
         \App\Models\Propietario::factory(10)->create();
     }
 }
