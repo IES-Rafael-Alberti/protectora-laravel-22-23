@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mascota;
+use App\Models\Acogida;
 use Illuminate\Http\Request;
 
-class MascotaController extends Controller
+class AcogidaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class MascotaController extends Controller
     public function index()
     {
         //
-        return view("mascotas", [ "mascotas" => Mascota::All() ]);
     }
 
     /**
@@ -26,7 +25,6 @@ class MascotaController extends Controller
     public function create()
     {
         //
-        return view("nuevamascota");
     }
 
     /**
@@ -38,62 +36,50 @@ class MascotaController extends Controller
     public function store(Request $request)
     {
         //
-        $datos = [ "nombre" => $request->input('nombre'),
-                    "fecha_nacimiento" => $request->input('fecha_nacimiento')];
-        // TODO: explicar forma de llegada de los datos
-        Mascota::create($request->all());
-        return redirect()->route('mascotas.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Mascota  $mascota
+     * @param  \App\Models\Acogida  $acogida
      * @return \Illuminate\Http\Response
      */
-    public function show(Mascota $mascota)
+    public function show(Acogida $acogida)
     {
         //
-        return view("mascota", [ "mascota" => $mascota ]);
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Mascota  $mascota
+     * @param  \App\Models\Acogida  $acogida
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mascota $mascota)
+    public function edit(Acogida $acogida)
     {
         //
-        return view('nuevamascota', ["mascota" => $mascota]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Mascota  $mascota
+     * @param  \App\Models\Acogida  $acogida
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mascota $mascota)
+    public function update(Request $request, Acogida $acogida)
     {
         //
-        $mascota->fill($request->all())->saveOrFail();
-        return redirect()->route('mascotas.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Mascota  $mascota
+     * @param  \App\Models\Acogida  $acogida
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mascota $mascota)
+    public function destroy(Acogida $acogida)
     {
         //
-        $mascota->deleteOrFail();
-        return redirect()->route('mascotas.index');
     }
 }

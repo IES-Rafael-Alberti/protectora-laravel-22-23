@@ -18,8 +18,7 @@
                 {{-- Enlaza con detalle mascota --}}
                 <tr>
                     <td >
-                        <a class="list-group-item list-group-item-action {{$loop->even? 'list-group-item-primary':''}}"
-                        href="{{route('mascotas.show', ['mascota'=>$mascota->id])}}">
+                        <a href="{{route('mascotas.show', ['mascota'=>$mascota->id])}}">
                             <i>{{ $mascota->nombre }}</i>
                         </a>
                     </td>
