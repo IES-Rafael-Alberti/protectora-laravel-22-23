@@ -15,7 +15,7 @@ class MascotaController extends Controller
     public function index()
     {
         //
-        return view("mascotas", [ "listado" => Mascota::All() ]);
+        return view("mascotas", [ "mascotas" => Mascota::All() ]);
     }
 
     /**
@@ -26,6 +26,7 @@ class MascotaController extends Controller
     public function create()
     {
         //
+        return view("nuevamascota");
     }
 
     /**
@@ -37,6 +38,8 @@ class MascotaController extends Controller
     public function store(Request $request)
     {
         //
+        Mascota::create($request->all());
+        return redirect()->route('mascotas.index');
     }
 
     /**
@@ -48,6 +51,8 @@ class MascotaController extends Controller
     public function show(Mascota $mascota)
     {
         //
+        return view("mascota", [ "mascota" => $mascota ]);
+
     }
 
     /**
@@ -59,6 +64,7 @@ class MascotaController extends Controller
     public function edit(Mascota $mascota)
     {
         //
+        return view('nuevamascota', ["mascota" => $mascota]);
     }
 
     /**
@@ -71,6 +77,8 @@ class MascotaController extends Controller
     public function update(Request $request, Mascota $mascota)
     {
         //
+        $mascota->fill($request->all())->saveOrFail();
+        return redirect()->route('mascotas.index');
     }
 
     /**
@@ -82,5 +90,7 @@ class MascotaController extends Controller
     public function destroy(Mascota $mascota)
     {
         //
+        $mascota->deleteOrFail();
+        return redirect()->route('mascotas.index');
     }
 }

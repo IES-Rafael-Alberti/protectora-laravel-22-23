@@ -9,6 +9,10 @@ class PropietarioController extends Controller
 {
     //
     public function listado() {
-        return view('propietarios', [ "listado" => Propietario::all() ]);
+        return view('propietarios', [ "propietarios" => Propietario::all() ]);
+    }
+
+    public function detalle(Request $request, $id) {         
+        return view('propietario', [ "propietario" => Propietario::find($id) ]);
     }
 }

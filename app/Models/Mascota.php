@@ -17,4 +17,8 @@ class Mascota extends Model
     public function fotos() {
         return $this->hasMany(Foto_Mascota::class);
     }
+
+    public function acogidas() {
+        return $this->hasMany(Acogida::class);
+    }
 }

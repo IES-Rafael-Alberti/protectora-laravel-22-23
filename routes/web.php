@@ -19,8 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/propietarios', [PropietarioController::class, 'listado']);
-Route::get('/mascotas', [MascotaController::class, 'index']);
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::controller(PropietarioController::class)->group(function () {
+        Route::get('/propietarios', 'listado');
+        Route::get('/propietario/{id}/', 'detalle');
+    });
+
+    Route::resource('mascotas', MascotaController::class);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

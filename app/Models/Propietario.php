@@ -14,4 +14,8 @@ class Propietario extends Model
         'apellidos',
         'rutafoto',
     ];
+
+    public function acogidas() {
+        return $this->hasMany(Acogida::class);
+    }
 }
