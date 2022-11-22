@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\MascotaController;
+use App\Http\Controllers\FotoMascotaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +21,13 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::controller(PropietarioController::class)->group(function () {
-        Route::get('/propietarios', 'listado');
-        Route::get('/propietario/{id}/', 'detalle');
+    Route::controller(FotoMascotaController::class)->group(function () {
+        Route::post('/foto/{mascota}/create', 'crear')->name("crear.foto");
+        Route::get('/foto/delete/{fotomascota}', 'borrar')->name("borrar.foto");
     });
 
     Route::resource('mascotas', MascotaController::class);
+    Route::resource('propietarios', PropietarioController::class);
 });
 
 Route::get('/dashboard', function () {

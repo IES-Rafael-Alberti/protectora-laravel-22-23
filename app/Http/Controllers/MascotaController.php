@@ -40,6 +40,8 @@ class MascotaController extends Controller
         //
         $datos = [ "nombre" => $request->input('nombre'),
                     "fecha_nacimiento" => $request->input('fecha_nacimiento')];
+
+                    
         // TODO: explicar forma de llegada de los datos
         Mascota::create($request->all());
         return redirect()->route('mascotas.index');
