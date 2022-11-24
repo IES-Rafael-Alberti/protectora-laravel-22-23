@@ -15,7 +15,8 @@ class PropietarioController extends Controller
     public function index()
     {
         //
-        return view("propietarios", [ "propietarios" => Propietario::All() ]);
+        return view("propietarios", [ "propietarios" => Propietario::paginate(5) ]);
+        //return Propietario::paginate(5);
     }
 
     /**

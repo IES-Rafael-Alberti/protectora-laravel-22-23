@@ -43,4 +43,5 @@
             @endforeach
         </tbody>
     </table>
+    {{ $propietarios->links() }}
 </x-app-layout>
