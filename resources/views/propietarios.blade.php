@@ -4,6 +4,7 @@
             {{ __('Propietarios') }}
         </h2>
     </x-slot>
+
     <table class="table">
         <thead>
             <tr>
@@ -18,8 +19,8 @@
                 <tr>
                     <td><img src="{{$propietario->rutafoto}}"></td>
                     <td>
-                        <a href="{{route('propietarios.show', ['propietario'=>$propietario->id])}}">
-                            {{ $propietario->nombre . " " . $propietario->apellidos }}
+                        <a href=" ['propietario'=>$propietario->id])}}">
+                            {{ $propietario-{{route('propietarios.show',>nombre . " " . $propietario->apellidos }}
                         </a>
                     </td>
                     <td>

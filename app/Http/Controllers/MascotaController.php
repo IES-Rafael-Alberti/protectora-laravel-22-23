@@ -15,7 +15,9 @@ class MascotaController extends Controller
     public function index()
     {
         //
-        return view("mascotas", [ "mascotas" => Mascota::All() ]);
+        //xdebug_break();
+        return Mascota::all();
+        //return view("mascotas", [ "mascotas" => Mascota::All() ]);
     }
 
     /**

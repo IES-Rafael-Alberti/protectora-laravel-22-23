@@ -19,10 +19,8 @@ class AcogidaSeeder extends Seeder
     public function run()
     {
         //
-        $todasLasMascotas = Mascota::All();
-        $todasLasPropietarias = Propietario::All();
-        $mascotaEjemplo = $todasLasMascotas[0];
-        $propietarioEjemplo = $todasLasPropietarias[0];
+        $mascotaEjemplo = Mascota::All()->random();
+        $propietarioEjemplo = Propietario::All()->random();
         Acogida::factory()
             ->for($mascotaEjemplo)
             ->for($propietarioEjemplo)

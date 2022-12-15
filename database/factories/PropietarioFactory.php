@@ -20,15 +20,16 @@ class PropietarioFactory extends Factory
      */
     public function definition()
     {
-        $random_dog = Http::get("https://dog.ceo/api/breeds/image/random");
+        //$random_dog = Http::get("https://dog.ceo/api/breeds/image/random");
         
-        if($random_dog->json("status") == "success") {
+        //if($random_dog->json("status") == "success") {
             $filename = Str::random(40);
-            Storage::disk('public')->put("propietarios/" . $filename, Http::get($random_dog->json("message")));
+        //    Storage::disk('public')->put("propietarios/" . $filename, Http::get($random_dog->json("message")));
+            Storage::disk('public')->put("propietarios/" . $filename, Http::get("https://random.imagecdn.app/300/300"));
             $imagen = "/storage/propietarios/" . $filename;
-        } else {
-            $imagen = fake()->imageUrl(360, 360);
-        }
+        //} else {
+        //    $imagen = fake()->imageUrl(360, 360);
+        //}
         return [
             'nombre' => fake("es_ES")->firstName(),
             'apellidos' => fake("es_ES")->lastName(),

@@ -15,8 +15,10 @@ class PropietarioController extends Controller
     public function index()
     {
         //
-        return view("propietarios", [ "propietarios" => Propietario::paginate(5) ]);
+        //xdebug_break();
         //return Propietario::paginate(5);
+        // MVC
+        return view("propietarios", [ "propietarios" => Propietario::paginate(5) ]);
     }
 
     /**

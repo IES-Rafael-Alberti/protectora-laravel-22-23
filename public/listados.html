@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function formateaPropietarios(propietarios) {
+            resultado = "";
+            propietarios.data.forEach(element => {
+                resultado += element.name + " " + element.surname + "<br>";
+            });
+            return resultado;
+        }
+        function formateaMascotas(mascotas) {
+            resultado = "";
+            mascotas.forEach(element => {
+                resultado += element.nombre + "<br>";
+            });
+            return resultado;
+        }
+
+        function cargaPropietarios(){
+            fetch("http://localhost:8080/students", {
+                    headers: new Headers({
+                        'Authorization': 'Bearer '+'eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJBbGJlcnRJRVMiLCJzdWIiOiJqYXZpZXIiLCJhdXRob3JpdGllcyI6WyJST0xFX0dPRCJdLCJpYXQiOjE2NzA4NDU4NjgsImV4cCI6MTY3MDg1MTg2OH0.Zwr1zqSIv5Iivgk9vHGxbIpTNLgEZ4PnvTbj_sXTurnqLT1NvAKfvmGXjsmBfuQPA5tkykBhLF3BKso8vpdJSg', 
+                    })
+                })
+                .then(response => response.json())
+                .then(data => document.getElementById("propietarios").innerHTML = formateaPropietarios(data))
+            
+        }
+        function cargaMascotas(){
+            fetch("http://localhost/mascotas")
+                .then(response => response.json())
+                .then(data => document.getElementById("mascotas").innerHTML = formateaMascotas(data))
+            
+        }
+    </script>
+</head>
+<body>
+
+    <div><button onclick="cargaPropietarios()">Propietarios</button></div>
+    <div id="propietarios"></div>
+    <hr/>
+    <div><button onclick="cargaMascotas()">Mascotas</button></div>
+    <div id="mascotas"></div>
+</body>
+</html>
