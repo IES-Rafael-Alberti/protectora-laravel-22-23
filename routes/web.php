@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PropietarioController;
-use App\Http\Controllers\MascotaController;
-use App\Http\Controllers\FotoMascotaController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Mvc\PropietarioController;
+use App\Http\Controllers\Mvc\MascotaController;
+use App\Http\Controllers\Mvc\FotoMascotaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +33,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::post('/apilogin', [LoginController::class, 'login']);
 
 require __DIR__.'/auth.php';
