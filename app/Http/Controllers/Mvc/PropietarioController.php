@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mvc;
+use App\Http\Controllers\Controller;
 use App\Models\Propietario;
 
 use Illuminate\Http\Request;

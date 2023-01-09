@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Models\Propietario;
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
 
+use App\Models\Propietario;
 use Illuminate\Http\Request;
 
 class PropietarioController extends Controller
@@ -14,11 +15,10 @@ class PropietarioController extends Controller
      */
     public function index()
     {
-        //
-        //xdebug_break();
-        //return Propietario::paginate(5);
+        // API
+        return Propietario::paginate(5);
         // MVC
-        return view("propietarios", [ "propietarios" => Propietario::paginate(5) ]);
+        //return view("propietarios", [ "propietarios" => Propietario::paginate(5) ]);
     }
 
     /**
@@ -29,7 +29,6 @@ class PropietarioController extends Controller
     public function create()
     {
         //
-        return view("nuevopropietario");
     }
 
     /**
@@ -46,8 +45,10 @@ class PropietarioController extends Controller
         $urlfoto = $request->file('foto')->store('propietarios', 'public');
         $datos = $request->all();
         $datos["rutafoto"] = "/storage/" . $urlfoto;
-        Propietario::create($datos);
-        return redirect()->route('propietarios.index');
+        $propietario = Propietario::create($datos);
+        return $propietario;
+        // MVC
+        // return redirect()->route('propietarios.index');
     }
 
     /**
@@ -58,8 +59,9 @@ class PropietarioController extends Controller
      */
     public function show(Propietario $propietario)
     {
-        //
-        return view("propietario", [ "propietario" => $propietario ]);
+        return $propietario;
+        // MVC
+        // return view("propietario", [ "propietario" => $propietario ]);
 
     }
 
@@ -72,7 +74,6 @@ class PropietarioController extends Controller
     public function edit(Propietario $propietario)
     {
         //
-        return view('nuevopropietario', ["propietario" => $propietario]);
     }
     /**
      * Update the specified resource in storage.
@@ -84,14 +85,19 @@ class PropietarioController extends Controller
     public function update(Request $request, Propietario $propietario)
     {
         //
-        xdebug_break();
         $datos = $request->all();
         if(!is_null($request->file('foto'))) {
             $urlfoto = $request->file('foto')->store('propietarios', 'public');
             $datos["rutafoto"] = "/storage/" . $urlfoto;
         }
         $propietario->fill($datos)->saveOrFail();
-        return redirect()->route('propietarios.index');
+        return [
+            "status" => 1,
+            "data" => $propietario,
+            "msg" => "Propetario modificado"
+        ];
+        // MVC
+        // return redirect()->route('propietarios.index');
     }
 
     /**
@@ -104,6 +110,12 @@ class PropietarioController extends Controller
     {
         //
         $propietario->deleteOrFail();
-        return redirect()->route('propietarios.index');
+        return [
+            "status" => 1,
+            "data" => $propietario,
+            "msg" => "Propetario borrado"
+        ];
+        // MVC
+        // return redirect()->route('propietarios.index');
     }
 }

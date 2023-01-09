@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\PropietarioController;
+use App\Http\Controllers\Api\MascotaController;
+use App\Http\Controllers\Api\FotoMascotaController;
+use App\Http\Controllers\Api\AcogidaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +21,16 @@ use App\Http\Controllers\Api\LoginController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::controller(FotoMascotaController::class)->group(function () {
+        Route::post('/foto/{mascota}/create', 'crear');
+        Route::get('/foto/delete/{fotomascota}', 'borrar');
+    });
+
+    Route::resource('mascotas', MascotaController::class);
+    Route::resource('propietarios', PropietarioController::class);
 });
 
 Route::post('/login', [LoginController::class, 'login']);
