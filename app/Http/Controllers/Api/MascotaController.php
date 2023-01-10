@@ -15,10 +15,7 @@ class MascotaController extends Controller
      */
     public function index()
     {
-        //
-        //xdebug_break();
         return Mascota::all();
-        //return view("mascotas", [ "mascotas" => Mascota::All() ]);
     }
 
     /**
@@ -29,7 +26,6 @@ class MascotaController extends Controller
     public function create()
     {
         //
-        return view("nuevamascota");
     }
 
     /**
@@ -46,8 +42,8 @@ class MascotaController extends Controller
 
                     
         // TODO: explicar forma de llegada de los datos
-        Mascota::create($request->all());
-        return redirect()->route('mascotas.index');
+        $mascota = Mascota::create($request->all());
+        return $mascota;
     }
 
     /**
@@ -59,7 +55,7 @@ class MascotaController extends Controller
     public function show(Mascota $mascota)
     {
         //
-        return view("mascota", [ "mascota" => $mascota ]);
+        return $mascota;
 
     }
 
@@ -72,7 +68,6 @@ class MascotaController extends Controller
     public function edit(Mascota $mascota)
     {
         //
-        return view('nuevamascota', ["mascota" => $mascota]);
     }
 
     /**
@@ -86,7 +81,11 @@ class MascotaController extends Controller
     {
         //
         $mascota->fill($request->all())->saveOrFail();
-        return redirect()->route('mascotas.index');
+        return [
+            "status" => 1,
+            "data" => $mascota,
+            "msg" => "Mascota modificada"
+        ];
     }
 
     /**
@@ -99,6 +98,10 @@ class MascotaController extends Controller
     {
         //
         $mascota->deleteOrFail();
-        return redirect()->route('mascotas.index');
+        return [
+            "status" => 1,
+            "data" => $mascota,
+            "msg" => "Mascota borrada"
+        ];
     }
 }
